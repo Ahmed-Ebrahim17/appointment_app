@@ -1,7 +1,8 @@
 import 'package:appointment_app/core/routing/routes.dart';
-import 'package:appointment_app/features/login/ui%20/%20widgets/login_screen.dart';
 import 'package:appointment_app/features/onBoarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
+
+import '../../features/login/ui /login_screen.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings settings) {
