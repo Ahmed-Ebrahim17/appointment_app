@@ -1,22 +1,19 @@
 import 'package:appointment_app/core/helpers/spacing.dart';
 import 'package:appointment_app/core/theming/styels.dart';
 import 'package:appointment_app/core/widgets/app_text_button.dart';
-import 'package:appointment_app/core/widgets/app_textform_field.dart';
+import 'package:appointment_app/features/login/data/models/login_request_body.dart';
+import 'package:appointment_app/features/login/logic/cubit/login_cubit.dart';
 import 'package:appointment_app/features/login/ui%20/%20widgets/already_have_account_text.dart';
+import 'package:appointment_app/features/login/ui%20/%20widgets/email_and_password.dart';
+import 'package:appointment_app/features/login/ui%20/%20widgets/login_bloc_listener.dart';
 import 'package:appointment_app/features/login/ui%20/%20widgets/terms_and_condtiton_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  final formKey = GlobalKey<FormState>();
-  bool isObsecureText = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,50 +31,32 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: TextStyles.font14RegularGrey,
                 ),
                 verticalSpace(36),
-                Form(
-                  key: formKey,
-                  child: Column(
-                    children: [
-                      AppTextformField(hintText: "Email"),
-                      verticalSpace(18.h),
-                      AppTextformField(
-                        hintText: "Password",
+                Column(
+                  children: [
+                    EmailAndPassword(),
+                    verticalSpace(24),
+                    Align(
+                      alignment: AlignmentDirectional.centerEnd,
+                      child: Text(
+                        "Forget Password?",
+                        style: TextStyles.font14BlueRegular,
+                      ),
+                    ),
+                    verticalSpace(36),
+                    AppTextButton(
+                      buttonText: "Login",
+                      textStyle: TextStyles.font16WhiteSemiBold,
+                      onpressed: () {
+                        listenAndLoginIn(context);
+                      },
+                    ),
+                    verticalSpace(16),
 
-                        sufficIcon: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              isObsecureText = !isObsecureText;
-                            });
-                          },
-                          child: Icon(
-                            isObsecureText
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                          ),
-                        ),
-                        isObscureText: isObsecureText,
-                      ),
-                      verticalSpace(18),
-                      Align(
-                        alignment: AlignmentDirectional.centerEnd,
-                        child: Text(
-                          "Forget Password?",
-                          style: TextStyles.font14BlueRegular,
-                        ),
-                      ),
-                      verticalSpace(36),
-                      AppTextButton(
-                        buttonText: "Login",
-                        textStyle: TextStyles.font16WhiteSemiBold,
-                        onpressed: () {},
-                      ),
-                      verticalSpace(16),
-
-                      TermsAndCondtitonText(),
-                      verticalSpace(60),
-                      AlreadyHaveAccountText(),
-                    ],
-                  ),
+                    TermsAndCondtitonText(),
+                    verticalSpace(60),
+                    AlreadyHaveAccountText(),
+                    LoginBlocListener(),
+                  ],
                 ),
               ],
             ),
@@ -85,5 +64,16 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  void listenAndLoginIn(BuildContext context) {
+    if (context.read<LoginCubit>().formKey.currentState!.validate()) {
+      context.read<LoginCubit>().emitLoginStates(
+        LoginRequestBody(
+          email: context.read<LoginCubit>().emailController.text,
+          password: context.read<LoginCubit>().passwordController.text,
+        ),
+      );
+    }
   }
 }
