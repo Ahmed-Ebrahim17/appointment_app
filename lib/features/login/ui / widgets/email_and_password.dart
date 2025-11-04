@@ -52,7 +52,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
       key: context.read<LoginCubit>().formKey,
       child: Column(
         children: [
-          AppTextformField(
+          AppTextFormField(
             hintText: "Email",
             validator: (value) {
               if (value == null ||
@@ -64,7 +64,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
             controller: context.read<LoginCubit>().emailController,
           ),
           verticalSpace(18),
-          AppTextformField(
+          AppTextFormField(
             hintText: "Password",
             controller: context.read<LoginCubit>().passwordController,
             isObscureText: isObsecureText,
@@ -75,7 +75,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
                 return 'Please enter a valid password';
               }
             },
-            sufficIcon: GestureDetector(
+            suffixIcon: GestureDetector(
               onTap: () {
                 setState(() {
                   isObsecureText = !isObsecureText;
