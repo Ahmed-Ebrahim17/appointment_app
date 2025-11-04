@@ -3,7 +3,7 @@ import 'package:appointment_app/core/theming/styels.dart';
 import 'package:appointment_app/core/widgets/app_text_button.dart';
 import 'package:appointment_app/features/login/data/models/login_request_body.dart';
 import 'package:appointment_app/features/login/logic/cubit/login_cubit.dart';
-import 'package:appointment_app/features/login/ui%20/%20widgets/already_have_account_text.dart';
+import 'package:appointment_app/features/login/ui%20/%20widgets/dont_have_account.dart';
 import 'package:appointment_app/features/login/ui%20/%20widgets/email_and_password.dart';
 import 'package:appointment_app/features/login/ui%20/%20widgets/login_bloc_listener.dart';
 import 'package:appointment_app/features/login/ui%20/%20widgets/terms_and_condtiton_text.dart';
@@ -54,7 +54,7 @@ class LoginScreen extends StatelessWidget {
 
                     TermsAndCondtitonText(),
                     verticalSpace(60),
-                    AlreadyHaveAccountText(),
+                    DontHaveAccount(),
                     LoginBlocListener(),
                   ],
                 ),

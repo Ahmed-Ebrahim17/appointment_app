@@ -3,7 +3,7 @@ import 'package:appointment_app/core/theming/styels.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AppTextformField extends StatelessWidget {
+class AppTextFormField extends StatelessWidget {
   final EdgeInsetsGeometry? contentPadding;
   final InputBorder? enabledBorder;
   final InputBorder? foucsedBorder;
@@ -11,18 +11,18 @@ class AppTextformField extends StatelessWidget {
   final TextStyle? hintStyle;
   final String hintText;
   final Color? backgroundColor;
-  final Widget? sufficIcon;
+  final Widget? suffixIcon;
   final bool? isObscureText;
   final TextEditingController? controller;
   final Function(String?) validator;
-  const AppTextformField({
+  const AppTextFormField({
     super.key,
     this.contentPadding,
     this.enabledBorder,
     this.foucsedBorder,
     this.inputTextStyle,
     this.hintStyle,
-    this.sufficIcon,
+    this.suffixIcon,
     this.isObscureText,
     required this.hintText,
     this.backgroundColor,
@@ -66,7 +66,7 @@ class AppTextformField extends StatelessWidget {
 
         hintStyle: hintStyle ?? TextStyles.font14LightGreyMedium,
         hintText: hintText,
-        suffixIcon: sufficIcon ?? sufficIcon,
+        suffixIcon: suffixIcon ?? suffixIcon,
       ),
       validator: (value) {
         return validator(value);
