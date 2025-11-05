@@ -1,10 +1,9 @@
 import 'package:appointment_app/core/helpers/extensons.dart';
-import 'package:appointment_app/core/theming/styels.dart';
+import 'package:appointment_app/core/widgets/snackbar.dart';
 import 'package:appointment_app/features/sign_up/logic/sign_up_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/routing/routes.dart';
 import '../../../../core/theming/colors.dart';
 import '../../logic/sign_up_state.dart';
 
@@ -24,18 +23,21 @@ class SignupBlocListener extends StatelessWidget {
             showDialog(
               context: context,
               builder: (context) => const Center(
-                child: CircularProgressIndicator(
-                  color: ColorsManager.mainBlue,
-                ),
+                child: CircularProgressIndicator(color: ColorsManager.mainBlue),
               ),
             );
           },
           signupSuccess: (signupResponse) {
             context.pop();
-            showSuccessDialog(context);
+            showSnakBar(
+              context,
+              text:
+                  "Congratulations, you have signed up successfully! \nTry to login now!",
+              color: Colors.green,
+            );
           },
           signupError: (error) {
-            setupErrorState(context, error);
+            showSnakBar(context, text: error, color: Colors.red);
           },
         );
       },
@@ -43,61 +45,61 @@ class SignupBlocListener extends StatelessWidget {
     );
   }
 
-  void showSuccessDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Signup Successful'),
-          content: const SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text('Congratulations, you have signed up successfully!'),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              style: TextButton.styleFrom(
-                foregroundColor: Colors.white, backgroundColor: Colors.blue, disabledForegroundColor: Colors.grey.withOpacity(0.38),
-              ),
-              onPressed: () {
-                context.pushNamed(Routes.loginScreen);
-              },
-              child: const Text('Continue'),
-            ),
-          ],
-        );
-      },
-    );
-  }
+  //   void showSuccessDialog(BuildContext context) {
+  //     showDialog(
+  //       context: context,
+  //       builder: (BuildContext context) {
+  //         return AlertDialog(
+  //           title: const Text('Signup Successful'),
+  //           content: const SingleChildScrollView(
+  //             child: ListBody(
+  //               children: <Widget>[
+  //                 Text('Congratulations, you have signed up successfully!'),
+  //               ],
+  //             ),
+  //           ),
+  //           actions: <Widget>[
+  //             TextButton(
+  //               style: TextButton.styleFrom(
+  //                 foregroundColor: Colors.white, backgroundColor: Colors.blue, disabledForegroundColor: Colors.grey.withOpacity(0.38),
+  //               ),
+  //               onPressed: () {
+  //                 context.pushNamed(Routes.loginScreen);
+  //               },
+  //               child: const Text('Continue'),
+  //             ),
+  //           ],
+  //         );
+  //       },
+  //     );
+  //   }
 
-  void setupErrorState(BuildContext context, String error) {
-    context.pop();
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        icon: const Icon(
-          Icons.error,
-          color: Colors.red,
-          size: 32,
-        ),
-        content: Text(
-          error,
-          style: TextStyles.font14DarkBlueMedium,
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              context.pop();
-            },
-            child: Text(
-              'Got it',
-              style: TextStyles.font13BlueSemiBold,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  //   void setupErrorState(BuildContext context, String error) {
+  //     context.pop();
+  //     showDialog(
+  //       context: context,
+  //       builder: (context) => AlertDialog(
+  //         icon: const Icon(
+  //           Icons.error,
+  //           color: Colors.red,
+  //           size: 32,
+  //         ),
+  //         content: Text(
+  //           error,
+  //           style: TextStyles.font14DarkBlueMedium,
+  //         ),
+  //         actions: [
+  //           TextButton(
+  //             onPressed: () {
+  //               context.pop();
+  //             },
+  //             child: Text(
+  //               'Got it',
+  //               style: TextStyles.font13BlueSemiBold,
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //     );
+  //   }
 }
