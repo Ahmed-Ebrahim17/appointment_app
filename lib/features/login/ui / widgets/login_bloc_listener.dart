@@ -32,7 +32,7 @@ class LoginBlocListener extends StatelessWidget {
           },
           error: (error) {
             context.pop();
-            showSnakBar(context, error, Colors.red);
+            showSnakBar(context,text:  error,color:  Colors.red);
           },
         );
       },
