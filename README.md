@@ -5,12 +5,6 @@ An application for managing and scheduling medical appointments, built with Flut
 
 <br>
 
-## System Design
-
-<img width="348" height="527" alt="Onboarding Screen" src="https://github.com/user-attachments/assets/f79882d5-abf3-4ac2-abc1-f106db53fc32" />
-
-<br>
-
 ## Features
 
 - **User Authentication:** Secure sign-up and login functionality.
