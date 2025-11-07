@@ -1,0 +1,21 @@
+default_platform(:android)
+
+platform :android do
+  desc "Lane For Firebase App Distribution"
+  
+  lane :firebase_distribution do
+    # Clean and build should be inside the lane
+    sh "flutter clean"
+    sh "flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons"
+    
+    # Firebase App Distribution
+    firebase_app_distribution(
+      app: "1:1084612495907:android:16b2af240ed5e68086ff96",
+      firebase_cli_token: ENV["FIREBASE_TOKEN"], # Use environment variable
+      android_artifact_type: "APK",
+      android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
+      testers: "ae447611@gmail.com",
+      release_notes: "Our First App Distribution With Fastlane!"
+    )
+  end
+end

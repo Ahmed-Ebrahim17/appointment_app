@@ -17,7 +17,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
@@ -42,7 +41,6 @@ android {
                 name = "app_name",
                 value = "DocDoc Production",
             )
-             applicationIdSuffix = ".dev"
         }
         create("development") {
             dimension = "default" 
@@ -51,7 +49,7 @@ android {
                 name = "app_name",
                 value = "DocDoc Development",
             )
-            applicationIdSuffix = ".production"
+            applicationIdSuffix = ".dev"
         }
     }
 
