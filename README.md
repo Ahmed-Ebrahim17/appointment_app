@@ -13,22 +13,23 @@ An application for managing and scheduling medical appointments, built with Flut
 
 ## Features
 
-- **Onboarding screen:** A welcoming and informative introduction for first-time users.
-- **User Login:** A foundational login interface for user authentication.
+- **User Authentication:** Secure sign-up and login functionality.
+- **Onboarding:** A welcoming and informative introduction for first-time users.
+- **Home Screen:** A central dashboard placeholder for upcoming features.
 
 ## Tech Stack & Architecture
 
 This project leverages a modern Flutter tech stack to ensure robustness, scalability, and maintainability.
 
-- **Framework:** [Flutter](https://flutter.dev/)
-- **Architecture:** Feature-based Clean Architecture
-- **State Management:** [flutter_bloc](https://pub.dev/packages/flutter_bloc) for predictable state management.
-- **Dependency Injection:** [get_it](https://pub.dev/packages/get_it) for service location.
-- **Networking:** [Dio](https://pub.dev/packages/dio) and [Retrofit](https://pub.dev/packages/retrofit) for type-safe REST API communication.
-- **Code Generation:** [Freezed](https://pub.dev/packages/freezed) for immutable data classes and unions, and [json_serializable](https://pub.dev/packages/json_serializable) for JSON serialization.
-- **Responsive UI:** [flutter_screenutil](https://pub.dev/packages/flutter_screenutil) to adapt the UI to different screen sizes.
-- **Assets:** [flutter_svg](https://pub.dev/packages/flutter_svg) for high-quality vector graphics.
-- **Localization:** [easy_localization](https://pub.dev/packages/easy_localization) for multi-language support.
+-   **Framework:** [Flutter](https://flutter.dev/)
+-   **Architecture:** Feature-First Clean Architecture
+-   **State Management:** [flutter_bloc](https://pub.dev/packages/flutter_bloc) for predictable state management.
+-   **Dependency Injection:** [get_it](https://pub.dev/packages/get_it) for service location.
+-   **Networking:** [Dio](https://pub.dev/packages/dio) and [Retrofit](https://pub.dev/packages/retrofit) for type-safe REST API communication.
+-   **Code Generation:** [Freezed](https://pub.dev/packages/freezed) for immutable data classes and unions, and [json_serializable](https://pub.dev/packages/json_serializable) for JSON serialization.
+-   **Responsive UI:** [flutter_screenutil](https://pub.dev/packages/flutter_screenutil) to adapt the UI to different screen sizes.
+-   **Routing:** [go_router](https://pub.dev/packages/go_router) for declarative navigation.
+-   **CI/CD:** [Fastlane](https://fastlane.tools/) for automating Android builds and distribution to Firebase App Distribution.
 
 ### Project Structure
 
@@ -37,13 +38,15 @@ The project follows a clean, feature-driven directory structure to promote separ
 ```
 lib/
 ├── core/
-│   ├── helpers/      # Extension methods and helper functions
-│   ├── routing/      # App routing logic (AppRouter, Routes)
-│   └── theming/      # App-wide colors and text styles
-├── features/
-│   ├── login/        # Login feature module
-│   └── onBoarding/   # Onboarding feature module
-└── main.dart         # Main application entry point
+│   ├── di/               # Dependency injection setup (GetIt)
+│   ├── helpers/          # Extension methods and helper functions
+│   ├── networking/       # Dio, Retrofit, API services, and error handling
+│   ├── routing/          # App routing logic (AppRouter, Routes)
+│   └── theming/          # App-wide colors, styles, and theming
+└── features/
+    ├── login/            # Login feature module (data, logic, UI)
+    ├── onBoarding/       # Onboarding feature module
+    └── sign_up/          # Sign-up feature module
 ```
 
 ## Getting Started
@@ -52,7 +55,8 @@ To get a local copy up and running, please follow these steps.
 
 ### Prerequisites
 
-Ensure you have the Flutter SDK installed. For installation instructions, see the [official Flutter documentation](https://flutter.dev/docs/get-started/install).
+Ensure you have the Flutter SDK installed on your machine.
+- [Flutter Installation Guide](https://flutter.dev/docs/get-started/install)
 
 ### Installation & Execution
 
@@ -72,11 +76,18 @@ Ensure you have the Flutter SDK installed. For installation instructions, see th
     ```
 
 4.  **Run the code generator:**
-    This project uses code generation. Run the following command to generate the necessary files:
+    This project uses code generation for models, networking, and state management. Run the following command to generate the necessary files:
     ```sh
     flutter pub run build_runner build --delete-conflicting-outputs
     ```
 
 5.  **Run the application:**
-    ```sh
-    flutter run
+    The project is set up with flavors for development and production.
+
+    -   To run the development version:
+        ```sh
+        flutter run --flavor development --target lib/main_development.dart
+        ```
+    -   To run the production version:
+        ```sh
+        flutter run --flavor production --target lib/main_production.dart
