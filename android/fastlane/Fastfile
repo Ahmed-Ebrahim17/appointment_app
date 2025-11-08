@@ -11,7 +11,7 @@ platform :android do
     # Firebase App Distribution
     firebase_app_distribution(
       app: "1:1084612495907:android:16b2af240ed5e68086ff96",
-      firebase_cli_token: ENV["FIREBASE_TOKEN"], # Use environment variable
+      firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"], # Use environment variable
       android_artifact_type: "APK",
       android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
       testers: "ae447611@gmail.com",
