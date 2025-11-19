@@ -51,11 +51,11 @@ class DoctorsBlueContainer extends StatelessWidget {
               ],
             ),
           ),
-          // Positioned(
-          //   top: 0,
-          //   right: 16.w,
-          //   child: Image.asset("assets/images/doctor.png", height: 200.h),
-          // ),
+          Positioned(
+            top: 0,
+            right: 16.w,
+            child: Image.asset("assets/images/doctor.png", height: 200.h),
+          ),
         ],
       ),
     );

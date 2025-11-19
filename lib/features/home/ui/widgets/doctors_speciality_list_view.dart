@@ -28,8 +28,8 @@ class DoctorsSpecialityListView extends StatelessWidget {
                   backgroundColor: ColorsManager.lightWhite,
                   child: SvgPicture.asset(
                     "assets/svgs/doctor_speciality.svg",
-                    height: 40.h,
-                    width: 40.w,
+                    height: 30.h,
+                    width: 30.w,
                   ),
                 ),
                 SizedBox(height: 8),
